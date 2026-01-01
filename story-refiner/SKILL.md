@@ -53,11 +53,35 @@ This Skill accepts the following inputs:
 
 ---
 
+## Evaluation Criteria Reference
+
+**All scoring and evaluation must follow the standards defined in `references/evaluation-criteria.md`.**
+
+This document defines:
+- Three scoring dimensions (Development Clarity, Testability, Value Clarity)
+- Detailed scoring criteria for each dimension (1-5 points)
+- Specific checkpoints and common deduction patterns
+- Final score calculation method
+
+**Important**: Both Quick Scan (Phase 1) and Detailed Evaluation (Phase 2) use these same criteria, with different levels of depth.
+
+---
+
 ## Evaluation Flow
 
 ### Phase 1: Quick Scan
 
-Score each Story initially (1-5 points):
+Score each Story initially (1-5 points) using the three dimensions from `references/evaluation-criteria.md`:
+
+**Scoring Method**:
+1. Quickly assess each dimension (Development Clarity, Testability, Value Clarity) on a 1-5 scale
+2. Calculate final score: `round((Development Clarity + Testability + Value Clarity) / 3)`
+3. Use the scoring criteria tables in `references/evaluation-criteria.md` as reference
+
+**Quick Assessment Focus**:
+- Development Clarity: Is action specific? Scope clear? Dependencies clear?
+- Testability: Can write test cases? Acceptance criteria present? Value verifiable?
+- Value Clarity: Value clear? Role correct? Maps to requirements?
 
 | Score | Level | Action |
 |-------|-------|--------|
@@ -71,46 +95,78 @@ Only Stories scoring ≤ 3 enter Phase 2 detailed evaluation.
 
 ### Phase 2: Multi-Perspective Detailed Evaluation
 
-For Stories needing review, evaluate from three perspectives:
+For Stories needing review, perform detailed evaluation from three perspectives using the **Specific Checkpoints** and **Common Deduction Patterns** defined in `references/evaluation-criteria.md`.
 
 #### 👨‍💻 Developer Perspective
 
-Check items:
-- [ ] Can I start development without asking more questions?
-- [ ] Is the Story scope clear? (Won't discover scope expansion mid-development)
-- [ ] Can I give a reasonable time estimate?
-- [ ] Are dependencies clear?
+**Reference**: `references/evaluation-criteria.md` - Dimension 1: Development Clarity
 
-Common problems:
-- Vague scope: "Manage XX" doesn't specify what operations
-- Hidden complexity: Looks simple but actually very complex
-- Technical details mixed in: Implementation method written into Story
+**Detailed Checkpoints** (from evaluation-criteria.md):
+- [ ] Is action description specific?
+  - 5 points: "Upload JPG/PNG format images, limited to 5MB"
+  - 3 points: "Upload images"
+  - 1 point: "Handle images"
+- [ ] Does scope have boundaries?
+  - 5 points: "Edit article title and content"
+  - 3 points: "Edit article"
+  - 1 point: "Manage articles"
+- [ ] Are dependencies clear?
+  - 5 points: Clearly marked "requires US-001 login feature completed first"
+  - 3 points: Implied dependency but not marked
+  - 1 point: Confusing or circular dependencies
+
+**Common Problems** (see evaluation-criteria.md for deduction patterns):
+- Vague verbs: "manage", "handle", "maintain" (-1~2 points)
+- No scope boundary: "all settings", "various reports" (-1~2 points)
+- Compound features: "create and edit" (-1 point)
+- Technical details mixed in: "load using AJAX" (-1 point)
 
 #### 🧪 QA Perspective
 
-Check items:
-- [ ] Can I write test cases based on this Story?
-- [ ] Are acceptance criteria (if present) specific enough?
-- [ ] Is the value in "so that..." verifiable?
-- [ ] Are boundary conditions defined? (If important)
+**Reference**: `references/evaluation-criteria.md` - Dimension 2: Testability
 
-Common problems:
-- Untestable value: "so that I can have a better experience"
-- Vague acceptance criteria: "system should respond quickly"
-- Missing error scenarios: Only describes happy path
+**Detailed Checkpoints** (from evaluation-criteria.md):
+- [ ] Are acceptance criteria clear?
+  - 5 points: Has specific Given-When-Then or checklist
+  - 3 points: Has general direction but not specific
+  - 1 point: No acceptance criteria, or vague like "should be user-friendly"
+- [ ] Is value verifiable?
+  - 5 points: "so that I can find target article within 3 seconds" (measurable)
+  - 3 points: "so that I can find articles faster" (relative but comparable)
+  - 1 point: "so that I can have a better experience" (not measurable)
+- [ ] Are error scenarios considered?
+  - 5 points: Clearly states error handling
+  - 3 points: Only happy path, but error handling can be inferred
+  - 1 point: Error scenarios completely unconsidered, and important to feature
+
+**Common Problems** (see evaluation-criteria.md for deduction patterns):
+- No acceptance criteria: None at all (-1~2 points, important features deduct more)
+- Vague criteria: "should be fast", "should look good" (-1 point)
+- Untestable value: "so that I can have better experience" (-2 points)
 
 #### 👤 Stakeholder Perspective
 
-Check items:
-- [ ] Do I understand this feature's value?
-- [ ] Is this what I want? (Cross-reference original requirements)
-- [ ] Is priority reasonable?
-- [ ] Are any features I want missing?
+**Reference**: `references/evaluation-criteria.md` - Dimension 3: Value Clarity
 
-Common problems:
-- Unclear value: Can't articulate why this feature is needed
-- Deviates from original requirements: Added things RFP didn't mention
-- Missing coverage: RFP mentioned but Story doesn't cover
+**Detailed Checkpoints** (from evaluation-criteria.md):
+- [ ] Does "so that..." state real value?
+  - 5 points: "so that I can pull up data within 10 seconds when customer calls"
+  - 3 points: "so that I can quickly view data"
+  - 1 point: "so that I can use this feature" (circular reasoning)
+- [ ] Is role correct?
+  - 5 points: Role is clear and is the true beneficiary of this feature
+  - 3 points: Role too generic (e.g., "user" covers too much)
+  - 1 point: Wrong role (e.g., giving admin feature to regular user)
+- [ ] Maps to original requirements?
+  - 5 points: Can directly trace to a specific RFP paragraph
+  - 3 points: Is reasonably derived implied requirement
+  - 1 point: Can't see connection to original requirements
+
+**Common Problems** (see evaluation-criteria.md for deduction patterns):
+- Circular reasoning: "so that I can use this feature" (-2 points)
+- Role too generic: Everything is "user" (-1 point)
+- Technical task disguised: "As a developer" (-3 points)
+- Deviates from original requirements: Features RFP didn't mention (-1~2 points)
 
 ### Phase 3: Auto-Correction
 
@@ -319,6 +375,13 @@ If all Stories score ≥ 4:
 ## Output Example
 
 Refer to `assets/refine-example.md` for complete output example.
+
+---
+
+## Reference Documents
+
+- **Evaluation Criteria**: `references/evaluation-criteria.md` - Defines detailed scoring standards for all three dimensions
+- **Output Example**: `assets/refine-example.md` - Complete refinement report example
 
 ---
 
