@@ -304,61 +304,18 @@ As a security manager, I want the system to pass ISO 27001 security testing to m
 
 ---
 
-## Execution Modes
+## Execution Mode
 
-Story Writer supports two execution modes:
-
-### Mode 1: Standard Mode (Default)
-
-Produces User Stories draft, suitable for:
+Story Writer produces User Stories draft, suitable for:
 - Quick initial output needed
-- Will use Story Refiner for refinement later
+- Will use Story Refiner for refinement later if needed
 - User wants to review before deciding on refinement
 
 ```
 Input → Story Writer → User Stories Draft
 ```
 
-### Mode 2: Refine Mode (Recommended)
-
-Auto-performs quality check and correction after output, suitable for:
-- One-stop output desired
-- Minimizing manual intervention
-- Projects with higher quality requirements
-
-**Trigger**: User says "please refine", "ensure quality", "complete mode", etc.
-
-```
-Input → Story Writer → Draft → [Built-in Refinement Logic] → Final Stories
-```
-
-#### Internal Refine Mode Flow
-
-1. **Produce Draft**: Output all Stories following standard process
-2. **Quality Assessment**: Score each Story from three perspectives (Developer/QA/Stakeholder)
-3. **Auto-Correction**: Correct Stories scoring ≤ 3
-   - Scope too large → Split
-   - Value unclear → Rewrite
-   - Not testable → Add acceptance criteria
-4. **Integrated Output**: Produce final version, marking what was corrected
-
-#### Refine Mode Output Format
-
-```markdown
-# User Stories (Refined)
-
-## 📊 Refinement Summary
-- Total Stories: XX
-- Passed directly: XX
-- Corrected: XX
-- Added from splits: XX
-
-## [Module Name]
-...
-
-## 🔧 Correction Log
-[List corrected Stories and reasons for user reference]
-```
+**Note**: For quality refinement and correction, use the separate **Story Refiner** skill after Story Writer completes its output.
 
 ---
 
@@ -371,7 +328,7 @@ Input → Story Writer → Draft → [Built-in Refinement Logic] → Final Stori
 2. [rfp-analyzer] produces structured analysis
 3. User confirms analysis results, answers blocking questions
 4. [story-writer] produces User Stories
-5. [story-refiner] refines quality (or use Story Writer's refine mode)
+5. [story-refiner] refines quality (optional, as needed)
 6. Final output
 ```
 
@@ -379,7 +336,8 @@ Input → Story Writer → Draft → [Built-in Refinement Logic] → Final Stori
 
 ```
 1. User provides RFP
-2. [story-writer --refine] one-stop production of refined Stories
+2. [story-writer] produces User Stories draft
+3. [story-refiner] refines quality (optional, as needed)
 ```
 
 ### Direct Story Writer Usage
@@ -396,24 +354,14 @@ This reduces user operation steps while maintaining output quality.
 
 ## Quality Assurance Mechanisms
 
-### Built-in Checks (Executed in Standard Mode Too)
+### Built-in Checks
 
 When producing each Story, automatically check:
 - [ ] Format correct (role/action/value three elements)
 - [ ] No compound actions ("and", "as well as")
 - [ ] Value is not circular reasoning
 
-### Refinement Checks (Additional in Refine Mode)
-
-Deep evaluation from three perspectives:
-
-| Perspective | Check Focus |
-|-------------|-------------|
-| 👨‍💻 Developer | Can I estimate? Is scope clear? |
-| 🧪 QA | Can I write tests? Are acceptance criteria clear? |
-| 👤 Stakeholder | Is value clear? Does it match original requirements? |
-
-Refer to `story-refiner/references/evaluation-criteria.md` for detailed evaluation criteria.
+**Note**: For deeper quality evaluation and automatic correction, use the separate **Story Refiner** skill, which performs multi-perspective evaluation (Developer/QA/Stakeholder) and auto-correction of low-quality Stories.
 
 ---
 

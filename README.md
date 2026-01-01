@@ -20,7 +20,7 @@ Anthropic Agent Skills suite for converting RFP (Request for Proposal) or requir
 │       └── invest-criteria.md       # INVEST principles explanation
 │
 ├── story-writer/                    # Skill 2: Story Writing
-│   ├── SKILL.md                     # Main Skill definition (with refine mode)
+│   ├── SKILL.md                     # Main Skill definition
 │   ├── references/
 │   │   └── story-templates.md       # Story template library
 │   └── assets/
@@ -75,20 +75,18 @@ All Skills default to responding in the **same language as user input**. Users c
 
 ## 🚀 Usage Methods
 
-### Method 1: One-Stop (Recommended)
+### Method 1: Quick Mode
 
-Simplest usage method, Story Writer's refine mode:
+Simplest usage method, directly produce Stories:
 
 ```
-RFP → [story-writer --refine] → Final User Stories
+RFP → [story-writer] → User Stories Draft
 ```
-
-**Trigger**: Tell Story Writer "please refine" or "complete mode"
 
 **Suitable for**:
 - Small to medium projects
 - Quick results desired
-- No intermediate output needed
+- Will use Story Refiner separately if refinement is needed
 
 ---
 
@@ -131,18 +129,20 @@ Output: Refinement report
 
 ---
 
-### Method 3: Quick Mode
+### Method 3: Direct Story Writing
 
 Skip analysis, directly produce Stories:
 
 ```
-RFP → [story-writer] → User Stories
+RFP → [story-writer] → User Stories Draft
 ```
 
 **Suitable for**:
 - Simple, clear requirements
 - Time pressure
 - MVP/POC projects
+
+**Note**: Can optionally use Story Refiner afterward for quality refinement.
 
 ---
 
@@ -177,9 +177,7 @@ RFP → [story-writer] → User Stories
 - Implied requirement handling (with boundaries)
 - Acceptance criteria writing
 
-**Execution Modes**:
-- **Standard Mode**: Quick draft production
-- **Refine Mode**: Auto-evaluate and correct after production
+**Note**: For quality refinement and automatic correction, use the separate **Story Refiner** skill after Story Writer completes its output.
 
 ### 3. Story Refiner
 

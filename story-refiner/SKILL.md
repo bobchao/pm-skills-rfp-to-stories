@@ -330,15 +330,7 @@ Refer to `assets/refine-example.md` for complete output example.
 [rfp-analyzer] → [story-writer] → [story-refiner] → Final output
 ```
 
-### Integrated Mode
-
-Story Writer can internally call Refiner logic to provide "one-stop" service.
-
-When user tells Story Writer "please refine" or "ensure quality", Story Writer should:
-1. First produce draft
-2. Apply Story Refiner's evaluation logic
-3. Auto-correct
-4. Output final version
+**Usage**: After Story Writer produces User Stories draft, use Story Refiner to evaluate quality and automatically correct low-scoring Stories. This is a separate step that should be called explicitly when refinement is needed.
 
 ---
 
