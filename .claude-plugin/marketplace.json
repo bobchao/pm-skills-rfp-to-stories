@@ -1,0 +1,96 @@
+{
+  "name": "RFP to User Stories Skills",
+  "description": "A comprehensive suite of Skills for converting RFP (Request for Proposal) documents into high-quality, executable User Stories. Includes analysis, writing, and refinement capabilities with multi-language support.",
+  "owner": {
+    "name": "Po-chiang Chao",
+    "email": "bobchao@stableprogress.com"
+  },
+  "plugins": [
+    {
+      "name": "rfp-analyzer",
+      "source": "./rfp-analyzer",
+      "description": "Performs structured analysis of RFP documents, identifying stakeholders, functional modules, system constraints, and generating key clarification questions. Focuses on 'analysis and decomposition' to prepare for User Story writing.",
+      "version": "1.2.0",
+      "author": {
+        "name": "Po-chiang Chao"
+      },
+      "tags": [
+        "requirements-analysis",
+        "rfp",
+        "product-management",
+        "system-analysis",
+        "stakeholder-identification"
+      ],
+      "keywords": [
+        "RFP",
+        "requirements",
+        "analysis",
+        "decomposition",
+        "stakeholders",
+        "functional-modules",
+        "system-constraints",
+        "clarification-questions"
+      ]
+    },
+    {
+      "name": "story-writer",
+      "source": "./story-writer",
+      "description": "Converts RFP analysis results or functional requirements into high-quality, executable User Stories. Follows INVEST principles, produces complete Stories with acceptance criteria, and organizes output by functional modules. Supports both standard and refine modes.",
+      "version": "1.2.0",
+      "author": {
+        "name": "Po-chiang Chao"
+      },
+      "tags": [
+        "user-stories",
+        "agile",
+        "product-management",
+        "requirements",
+        "story-writing",
+        "INVEST"
+      ],
+      "keywords": [
+        "user-stories",
+        "agile",
+        "scrum",
+        "product-owner",
+        "requirements",
+        "acceptance-criteria",
+        "INVEST",
+        "story-templates"
+      ]
+    },
+    {
+      "name": "story-refiner",
+      "source": "./story-refiner",
+      "description": "Evaluates User Story quality and automatically corrects items not meeting standards. Reviews from developer, QA, and stakeholder perspectives using a 1-5 scoring system. Supports iterative refinement (max 3 rounds) to ensure split Stories are also evaluated.",
+      "version": "1.2.0",
+      "author": {
+        "name": "Po-chiang Chao"
+      },
+      "tags": [
+        "quality-assurance",
+        "user-stories",
+        "code-review",
+        "refinement",
+        "evaluation",
+        "testing"
+      ],
+      "keywords": [
+        "story-quality",
+        "refinement",
+        "evaluation",
+        "quality-assurance",
+        "testing",
+        "acceptance-criteria",
+        "iterative-refinement"
+      ]
+    }
+  ],
+  "metadata": {
+    "repository": "https://github.com/bobchao/pm-skills-rfp-to-stories",
+    "license": "MIT",
+    "documentation": "https://github.com/bobchao/pm-skills-rfp-to-stories/blob/main/README.md",
+    "support": "https://github.com/bobchao/pm-skills-rfp-to-stories/issues"
+  }
+}
+
